@@ -1,7 +1,0 @@
-{
-    "name": "geek/twig",
-    "type": "project",
-    "require": {
-        "twig/twig": "^2.0"
-    }
-}
