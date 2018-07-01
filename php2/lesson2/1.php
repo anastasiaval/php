@@ -4,18 +4,19 @@ abstract class Goods {
     public $price;
     public $name;
     public $quantity;
+
     public function __construct($name) {
         $this->name = $name;
     }
 
-    function setPrice($newPrice) {
+    public function setPrice($newPrice) {
         if (!is_numeric($newPrice)) {
             return false;
         }
         return $this->price = $newPrice;
     }
 
-    function getQuantity($newQuantity) {
+    public function getQuantity($newQuantity) {
         if (!is_numeric($newQuantity)) {
             return false;
         }
