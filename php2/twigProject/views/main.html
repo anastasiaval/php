@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="../css/products.css">
+</head>
+<body>
+<div class="wrapper">
+    <div id="products">
+        {% for product in products %}
+        <div class="products__preview">
+            <h5>{{ product.name }}</h5>
+            <p>{{ product.price }} руб.</p>
+            <button>В корзину</button>
+        </div>
+        {% endfor %}
+    </div>
+    <button id="load">Загрузить ещё</button>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/loader.js"></script>
+</body>
+</html>
+
