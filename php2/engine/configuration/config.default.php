@@ -1,6 +1,6 @@
 <?php
 $config['db_user'] = 'root';
-$config['db_password'] = 'root';
+$config['db_password'] = '';
 $config['db_base'] = 'test2';
 $config['db_host'] = '127.0.0.1';
 $config['db_charset'] = 'UTF-8';
