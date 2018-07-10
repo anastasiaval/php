@@ -1,0 +1,10 @@
+/*
+ * Created by Artyom Manchenkov
+ * Copyright © 2015-2018 [DeepSide Interactive]
+ */
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color: #ccc;
+}
