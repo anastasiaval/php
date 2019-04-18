@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 3</title>
+</head>
+<body>
+<a href="#">Exercise 6</a>
+<a href="#">Exercise 6</a>
+<a href="#">Exercise 6</a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    'use strict';
+
+    // 1. Что выведет alert(typeof NaN); ?
+    // number
+
+    // 2. Что выведет alert(NaN === NaN); ?
+    // результат сравнения с NaN всегда false
+
+    // 3. 0.1 + 0.2 == 0.3 ?
+    // false, 0.30000000000000004 не равно 0.3
+
+    // 4. Какой тип будет иметь переменная a, если она создается при помощи следующего кода: var a = "a,b".split(',');
+    // object
+
+    // 5. Сделать так, чтобы при нажатии на элемент <а> алертом выводилось «Hello world!».
+
+    let aaa = document.getElementsByTagName('a');
+    for (let a of aaa) {
+        a.addEventListener('click', () => alert('Hello world!'));
+    }
+
+    jQuery(function ($) {
+        $('a').click(function () {
+            alert('Hello world from jQ!')
+        });
+    });
+
+    // 6. Найти все элементы div с классом one, а также все элементы p с классом two.
+    // Затем добавить им всем класс three и визуально плавно спустить вниз.
+
+    $('div.one').add('p.two').addClass('three').slideDown('slow');
+
+    // 7. Выбрать видимый div с именем red, который содержит тег span.
+
+    $('div[name=red]:visible:has(span)');
+
+    // 8. Привести пример замыкания.
+
+    function myFunc() {
+        let name = 'Anna';
+
+        function sayName() {
+            return name;
+        }
+
+        return sayName;
+    }
+
+    const mySayNameFunc = myFunc();
+    mySayNameFunc(); // Anna
+
+    // 9. Написать функцию, которая уменьшает или увеличивает указанное время на заданное количество минут, например:
+
+    function changeTime(time, minutes) {
+        time = time.split(':');
+        let timer = new Date;
+        timer.setHours(+time[0]);
+        timer.setMinutes(+time[1]);
+
+        timer.setMinutes(timer.getMinutes() + minutes);
+
+        let h = formattedNumber(timer.getHours());
+        let m = formattedNumber(timer.getMinutes());
+
+        return `${h}:${m}`;
+    }
+
+    function formattedNumber(num) {
+        return ('0' + num).slice(-2);
+    }
+
+    changeTime('10:00', 1); //return '10:01'
+    changeTime('10:00', -1); //return '09:59'
+    changeTime('23:59', 1); //return '00:00'
+    changeTime('00:00', -1); //return '23:59'
+
+// 10. Написать функцию, возвращающую градус, на который указывают часовая и минутная стрелки в зависимости от времени.
+
+    function clock_degree(time) {
+        time = time.split(':');
+        time[0] = (+time[0] > 11) ? +time[0] - 12 : time[0];
+
+        if (+time[0] > 11 || +time[1] > 59) {
+            return 'Check your time!';
+        }
+
+        let hDeg = +time[0] * 30;
+        if (+time[0] === 0) {
+            hDeg = 360;
+        }
+
+        let mDeg = +time[1] * 6;
+        if (+time[1] === 0) {
+            mDeg = 360;
+        }
+
+        return `${hDeg}:${mDeg}`;
+    }
+
+    clock_degree("00:00"); // returns : "360:360"
+    clock_degree("01:01"); // returns : "30:6"
+    clock_degree("00:01"); // returns : "360:6"
+    clock_degree("01:00"); // returns : "30:360"
+    clock_degree("01:30"); // returns : "30:180"
+    clock_degree("24:00"); // returns : "Check your time !"
+    clock_degree("13:60"); // returns : "Check your time !"
+    clock_degree("20:34"); // returns : "240:204"
+
+    // 11. Написать простую игру «Угадай число». Программа загадывает случайное число от 0 до 100.
+    // Игрок должен вводить предположения и получать ответы «Больше», «Меньше» или «Число угадано».
+
+    let number;
+    let attempts;
+
+    resetGame();
+    tryGuessNumber();
+
+    function resetGame() {
+        attempts = 0;
+        number = Math.floor(Math.random() * 100);
+    }
+
+    function tryGuessNumber() {
+        const userAnswer = parseInt(prompt('Введите число от 0 до 100, для выхода наберите -1.'));
+
+        if (userAnswer === -1) {
+            return alert('До свидания.');
+        }
+
+        if (isNaN(userAnswer)) {
+            alert('Необходимо ввести целое число от 0 до 100.');
+            return tryGuessNumber();
+        }
+
+        attempts++;
+
+        if (userAnswer > number) {
+            alert('Попробуйте число меньше.');
+        } else if (userAnswer < number) {
+            alert('Попробуйте число больше.');
+        } else {
+            alert('Поздравляю! Вы угадали число с ' + attempts + ' попытки.');
+            if (!confirm('Хотите сыграть еще раз?')) {
+                return alert('До свидания.');
+            }
+            resetGame();
+        }
+
+        tryGuessNumber();
+    }
+
+</script>
+</body>
+</html>
